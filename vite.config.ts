@@ -21,7 +21,6 @@ export default defineConfig(({ mode }) => {
       globals: true,
       setupFiles: ['./src/test/setup.ts'],
       css: false,
-      coverage: { provider: 'v8', include: ['src/**/*.{ts,tsx}'], exclude: ['src/test/**'] },
     },
   };
 });
