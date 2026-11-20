@@ -1,0 +1,34 @@
+# Runs the API (Kidolegends/agendamento-api) and this panel together.
+#
+#   docker compose up --build
+#   open http://localhost:8080   (admin@agendamento.dev / admin123)
+#
+# By default the API image is built straight from GitHub. If you cloned the API next to
+# this repo, build from your local copy instead:
+#   API_CONTEXT=../agendamento-api docker compose up --build
+services:
+  api:
+    build:
+      context: ${API_CONTEXT:-https://github.com/Kidolegends/agendamento-api.git#main}
+    environment:
+      PORT: 3333
+      DATABASE_URL: file:./dev.db
+      # Demo value only. Use a long random secret anywhere that is not your laptop.
+      JWT_SECRET: ${JWT_SECRET:-demo-secret-change-me-please}
+      BUSINESS_UTC_OFFSET: "-03:00"
+    ports:
+      - "3333:3333" # optional: Swagger UI at http://localhost:3333/docs
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3333/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 15s
+
+  web:
+    build: .
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
