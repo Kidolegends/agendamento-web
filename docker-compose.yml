@@ -15,11 +15,17 @@ services:
       DATABASE_URL: file:./dev.db
       # Demo value only. Use a long random secret anywhere that is not your laptop.
       JWT_SECRET: ${JWT_SECRET:-demo-secret-change-me-please}
-      BUSINESS_UTC_OFFSET: "-03:00"
+      BUSINESS_UTC_OFFSET: '-03:00'
     ports:
-      - "3333:3333" # optional: Swagger UI at http://localhost:3333/docs
+      - '3333:3333' # optional: Swagger UI at http://localhost:3333/docs
     healthcheck:
-      test: ["CMD", "node", "-e", "fetch('http://localhost:3333/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:3333/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
       interval: 10s
       timeout: 3s
       retries: 10
@@ -31,4 +37,4 @@ services:
       api:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - '8080:8080'
