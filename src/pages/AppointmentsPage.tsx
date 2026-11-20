@@ -130,40 +130,42 @@ export function AppointmentsPage() {
                   <td>
                     <StatusBadge status={a.status} />
                   </td>
-                  <td className="actions">
-                    {a.status === 'scheduled' &&
-                      (confirmingId === a.id ? (
-                        <>
-                          <button
-                            type="button"
-                            className="btn btn-danger"
-                            disabled={cancel.isPending}
-                            onClick={() =>
-                              cancel.mutate(a.id, { onSettled: () => setConfirmingId(null) })
-                            }
-                          >
-                            Confirmar cancelamento
-                          </button>
+                  <td>
+                    <div className="actions">
+                      {a.status === 'scheduled' &&
+                        (confirmingId === a.id ? (
+                          <>
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              disabled={cancel.isPending}
+                              onClick={() =>
+                                cancel.mutate(a.id, { onSettled: () => setConfirmingId(null) })
+                              }
+                            >
+                              Confirmar cancelamento
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-ghost"
+                              onClick={() => setConfirmingId(null)}
+                            >
+                              Voltar
+                            </button>
+                          </>
+                        ) : (
                           <button
                             type="button"
                             className="btn btn-ghost"
-                            onClick={() => setConfirmingId(null)}
+                            onClick={() => {
+                              cancel.reset();
+                              setConfirmingId(a.id);
+                            }}
                           >
-                            Voltar
+                            Cancelar
                           </button>
-                        </>
-                      ) : (
-                        <button
-                          type="button"
-                          className="btn btn-ghost"
-                          onClick={() => {
-                            cancel.reset();
-                            setConfirmingId(a.id);
-                          }}
-                        >
-                          Cancelar
-                        </button>
-                      ))}
+                        ))}
+                    </div>
                   </td>
                 </tr>
               ))}

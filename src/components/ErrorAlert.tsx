@@ -3,7 +3,7 @@ import { ApiError } from '../lib/api';
 const FRIENDLY_TITLES: Record<number, string> = {
   0: 'Sem conexão com o servidor',
   400: 'Confira os dados informados',
-  401: 'Sessão inválida',
+  401: 'Acesso negado',
   403: 'Sem permissão',
   404: 'Não encontrado',
   409: 'Conflito de horário',
