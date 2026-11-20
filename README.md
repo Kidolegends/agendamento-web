@@ -60,7 +60,7 @@ docker compose up --build
 # API docs: http://localhost:3333/docs
 ```
 
-By default the compose file builds the API image straight from GitHub. To use a local clone instead: `API_CONTEXT=../agendamento-api docker compose up --build`.
+By default the compose file builds the API image straight from GitHub (`agendamento-api`, which runs as a non-root user and keeps SQLite in a volume). To use a local clone instead: `API_CONTEXT=../agendamento-api docker compose up --build`. CI runs this whole stack and logs in through the nginx proxy.
 
 ### Scripts
 
@@ -106,7 +106,6 @@ Decisions worth explaining:
 - The API has no "list users" endpoint, so even as an admin the panel books for the logged-in user. (The API accepts `clientId` for admins; adding a client picker needs a new endpoint.)
 - No registration screen, and no screens for managing professionals, services or working hours yet.
 - The JWT is stored in `localStorage`, which is simple but exposed to XSS. An `HttpOnly` cookie would be safer.
-- The Docker files and the compose file are written to the standard recipes, but I could only verify the app itself (tests, lint, build, and a real run against the API) on my machine. CI also builds the image.
 
 ## Tests
 
