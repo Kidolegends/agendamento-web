@@ -4,7 +4,7 @@
 
 A React admin panel for my own REST API, [`agendamento-api`](https://github.com/Kidolegends/agendamento-api) (appointment booking for salons and clinics).
 
-> **Personal portfolio project.** I built it on my own to practice front-end architecture and to talk to a real API that I also wrote. It is not production software and it has not been used by any company or customer.
+> **Personal portfolio project.** I made it to practice front-end architecture against an API of my own. It was written with the help of an AI coding assistant, and I study and explain every part of it. It is not production software and it has not been used by any company or customer.
 
 🇧🇷 [Leia em português](#-português)
 
@@ -118,7 +118,7 @@ Decisions worth explaining:
 
 Painel administrativo em React para a minha própria API REST, a [`agendamento-api`](https://github.com/Kidolegends/agendamento-api) (agendamentos para salões e clínicas).
 
-> **Projeto pessoal de portfólio.** Fiz por conta própria para praticar arquitetura de front-end e consumir uma API real que eu mesmo escrevi. Não é um software de produção e nenhuma empresa ou cliente usa.
+> **Projeto pessoal de portfólio.** Fiz para praticar arquitetura de front-end com uma API minha. Foi escrito com ajuda de um assistente de IA, e eu estudo e sei explicar cada parte. Não é um software de produção e nenhuma empresa ou cliente usa.
 
 ## O que faz
 
